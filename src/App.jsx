@@ -3,204 +3,6 @@ import React, { useState } from 'react'
 import { buildCards } from './cards'
 import { Card, CheckboxItem, RadioItem, TextInput, NumberInput, SelectInput } from './components'
 
-
-
-// // Amnamnèse actuelle
-//
-// function buildCards() {
-//
-// const abPainCard = (
-//   <Card>
-// 		<NumberInput id="abPainJ" label="Depuis" placeholder="Jours" min={0} />
-// 	  <SelectInput id="abPainL" label="Localisation" options={[
-// 				"Fosse iliaque droite",
-// 				"Fosse iliaque gauche",
-// 				"Suprapubien",
-// 				"Hypochondre droit",
-// 				"Hypochondre gauche",
-// 				"Épigastre"
-// 			]} />
-// 		<NumberInput id="abPainI" label="Intensité" placeholder="/10" min={0} max={10} />
-// 	  <SelectInput id="abPainQ" label="Qualité" options={[
-// 				"Coup de couteau",
-// 				"Diffus",
-// 				"Crampiforme",
-// 				"Colique",
-// 			]} />
-// 	  <SelectInput id="abPainE" label="Evolution" options={[
-// 				"En augmentation",
-// 				"Constante",
-// 				"En diminution",
-// 			]} />
-// 	  <SelectInput id="abPainS" label="Facteur soulageant" options={[
-// 				"Pire avant les repas",
-// 				"Pire après les repas",
-// 				"Avant selles",
-// 				"Après selles",
-// 			]} />
-//   </Card>
-// )
-//
-// const constipCard = (
-//   <Card>
-// 		<NumberInput id="constipJ" label="Depuis" placeholder="Jours" min={0} />
-// 		<NumberInput id="constipX" label="Selles habituellement tout les" placeholder="Jours" min={0} />
-// 	  <SelectInput id="constipC" label="Consistance des selles" options={[
-// 				"Dure",
-// 				"Molle",
-// 				"Diarrhées",
-// 			]} />
-// 	  <SelectInput id="constipV" label="Vomissement" options={[
-// 				"Alimentaire",
-// 				"Billeux",
-// 				"Hématique",
-// 				"Fécaloides",
-// 			]} />
-// 	  <SelectInput id="constipG" label="Gaz ?" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-// 	  <SelectInput id="constipS" label="Sang dans les selles ?" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-//   </Card>
-// )
-//
-// const nauseaCard = (
-//   <Card>
-// 		<NumberInput id="nauseaJ" label="Depuis" placeholder="Jours" min={0} />
-// 		<NumberInput id="nauseaF" label="Fréquance" placeholder="Heures" min={0} />
-// 	  <SelectInput id="nauseaT" label="Type" options={[
-// 				"Alimentaire",
-// 				"Billeux",
-// 				"Hématique",
-// 				"Fécaloides",
-// 			]} />
-// 	  <SelectInput id="nauseaA" label="Associé à" options={[
-// 				"Céphalée",
-// 				"Photophobie",
-// 				"Raideur de nuque",
-// 				"Vertiges",
-// 			]} />
-// 	  <TextInput id="nauseaN" label="Nouveau traitement récent" />
-// 	  <SelectInput id="nauseaR" label="Retard de règle" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-// 	  <SelectInput id="nauseaP" label="Possibilité de grossesse" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-// 	  <SelectInput id="nauseaC" label="Notion de contage" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-// 	  <SelectInput id="nauseaTox" label="Consommation de toxique" options={[
-// 				"Alcool",
-// 				"Drogue",
-// 			]} />
-//   </Card>
-// )
-//
-// const rectoRrhCard = (
-//   <Card>
-// 		<NumberInput id="rectoRrhJ" label="Depuis" placeholder="Jours" min={0} />
-// 	  <SelectInput id="rectoRrhQua" label="Qualité" options={[
-// 				"Sang frais",
-// 				"Méléna",
-// 				"Caillot",
-// 			]} />
-// 	  <SelectInput id="rectoRrhT" label="Timing" options={[
-// 				"Goutte sur la cuvette",
-// 				"Mélangé aux selles",
-// 			]} />
-// 	  <SelectInput id="rectoRrhHemo" label="Hémodynamique" options={[
-// 				"Stable",
-// 				"Instable",
-// 			]} />
-// 	  <SelectInput id="rectoRrhSouv" label="Sensation de devoir aller à selle tout le temps" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-//   </Card>
-// )
-//
-// const hematCard = (
-//   <Card>
-// 		<NumberInput id="hematJ" label="Depuis" placeholder="Jours" min={0} />
-// 	  <SelectInput id="hematAbs" label="Absence de" options={[
-// 				"Hémoptysie",
-// 				"Épistaxis",
-// 			]} />
-// 	  <SelectInput id="hematQua" label="Qualité" options={[
-// 				"Sang frais",
-// 				"Marque de café",
-// 			]} />
-// 	  <SelectInput id="hematQuant" label="Quantité" options={[
-// 				"Abondant",
-// 				"Faible quantité",
-// 			]} />
-// 	  <SelectInput id="hematEp" label="Episode" options={[
-// 				"Unique",
-// 				"Multiple",
-// 			]} />
-// 	  <SelectInput id="hematVom" label="Effort de vomissement avant" options={[
-// 				"Oui",
-// 				"Non",
-// 			]} />
-// 	  <SelectInput id="hematSign" label="Signee associés" options={[
-// 				"Brulure rétrosternale",
-// 				"Méléna",
-// 				"Réctorrhagie",
-// 				"Dysphagie",
-// 			]} />
-// 	  <SelectInput id="hematDyn" label="Hemodynamiquement" options={[
-// 				"Stable",
-// 				"Instable",
-// 			]} />
-//   </Card>
-// )
-//
-// const hernCard = (
-//   <Card>
-// 		<NumberInput id="hernJ" label="Depuis" placeholder="Jours" min={0} />
-// 	  <SelectInput id="hernLoc" label="Localisation" options={[
-// 				"Inguinale",
-// 				"Ombilicale",
-// 				"Cicatricielle",
-// 			]} />
-// 	  <SelectInput id="hernApp" label="Mode d'apparition" options={[
-// 				"Progressif",
-// 				"Brutal",
-// 			]} />
-// 	  <SelectInput id="hernEvo" label="Evolution" options={[
-// 				"Augmente avec le temps",
-// 				"Constant",
-// 			]} />
-// 	  <SelectInput id="hernVar" label="Variabilité" options={[
-// 				"Augment à l'effort",
-// 				"Toux",
-// 				"Station debout",
-// 				"Disparait à repos",
-// 				"Couché",
-// 			]} />
-// 	  <SelectInput id="hernAss" label="Symptômes associés" options={[
-// 				"Irréductible",
-// 				"Douleure intense",
-// 				"Rougeur",
-// 				"Vomissement",
-// 				"Constipation",
-// 			]} />
-// 	  <SelectInput id="hernSign" label="Signee associés" options={[
-// 				"Brulure rétrosternale",
-// 				"Méléna",
-// 				"Réctorrhagie",
-// 				"Dysphagie",
-// 			]} />
-//   </Card>
-// )
-
 function App() {
 	  const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
 		const [output, setOutput] = useState('')
@@ -307,20 +109,20 @@ function App() {
         <CheckboxItem id="malaise" value="malaise" label="Malaise" />
 			</Card>
 
-      <Card title="Anamnèse uro">
+      <Card title="Anamnèse urologique">
         <CheckboxItem id="dysur" value="dysurie" label="Dysurie" />
         <CheckboxItem id="pollak" value="pollakiurie" label="Pollakiurie" />
         <CheckboxItem id="hematu" value="hématurie" label="Hématurie" />
 			</Card>
 
-      <Card title="Anamnèse uro">
+      <Card title="Anamnèse gynocologique">
 				<NumberInput id="detRegl" label="Dernière règle depuis" placeholder="Jours" min={0} />
         <CheckboxItem id="retRegl" value="retard de règle" label="Retard de Règle" />
         <CheckboxItem id="metroRrh" value="métrorrhagies" label="Métrorrhagies" />
         <CheckboxItem id="doulPelv" value="douleur pelvienne" label="Douleur pelvienne" />
 			</Card>
 
-      <Card title="Anamnèse uro">
+      <Card title="Anamnèse cardiopulmonaire">
         <CheckboxItem id="doulThor" value="douleur thoracique" label="Douleur Thoracique" />
         <CheckboxItem id="dysp" value="dispnée" label="Dyspnée" />
         <CheckboxItem id="palp" value="palpitations" label="Palpitations" />
