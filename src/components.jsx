@@ -9,10 +9,11 @@ export function Card({ title, children }) {
   )
 }
 
-export function RadioItem({ name, id, value, label }) {
+export function RadioItem({ name, id, value, label, onChange }) {
   return (
     <div className="symptom-item">
-      <input type="radio" name={name} id={id} value={value} />
+      <input type="radio" name={name} id={id} value={value}
+	  onChange={() => onChange && onChange (value)}/>
       <label htmlFor={id}>{label}</label>
     </div>
   )
@@ -27,13 +28,12 @@ export function TextInput({ id, label, placeholder }) {
   )
 }
 
-export function NumberInput({ id, label, placeholder, min, max }) {
-  const [val, setVal] = useState('')
+export function NumberInput({ id, label, placeholder, min, max, onChange }) {
   return (
     <div className="info-item">
       <label htmlFor={id}>{label}</label>
       <input type="number" id={id} placeholder={placeholder} min={min} max={max}
-        onChange={(e) => setVal(e.target.value)} />
+        onChange={(e) => onChange && onChange(e.target.value)} />
     </div>
   )
 }
