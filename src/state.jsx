@@ -4,7 +4,7 @@ export const initialState = {
 		abPain: '',
 		constip: '',
 		nausea: '',
-		rectoRrh: '',
+		rectorrh: '',
 		hemat: '',
 		hern: '',
 		pertedApp: ''
@@ -31,6 +31,24 @@ export const initialState = {
 		qualite: [],
 		evolution: [],
 		facteurSoulageant: [],
+	},
+	constipDet: {
+		depuis: '',
+		frequence: '',
+		consistance: [],
+		vomissement: [],
+		gaz: '',
+	},
+	nauseaDet: {
+		depuis: '',
+		frequence: '',
+		type: [],
+		associe: [],
+		traitement: '',
+		retardRegle: [],
+		grossesse: [],
+		contage: [],
+		consommation: [],
 	},
 }
 

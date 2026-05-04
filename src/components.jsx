@@ -19,11 +19,16 @@ export function RadioItem({ name, id, value, label, onChange }) {
   )
 }
 
-export function TextInput({ id, label, placeholder }) {
+export function TextInput({ id, label, placeholder, onChange }) {
   return (
     <div className="info-item">
       <label htmlFor={id}>{label}</label>
-      <input type="text" id={id} placeholder={placeholder} />
+      <input
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        onChange={(e) => onChange && onChange(e.target.value)}
+      />
     </div>
   )
 }
@@ -76,6 +81,29 @@ export function CheckboxRow({ label, options, onChange }) {
     ))}
   </div>
 </div>
+  )
+}
+
+export function RadioRow({ name, label, options, onChange }) {
+  const [selected, setSelected] = useState('')
+  function handleChange(opt) {
+    setSelected(opt)
+    if (onChange) onChange(opt)
+  }
+  return (
+    <div className="checkbox-row">
+      <label>{label}</label>
+      <div className='options'>
+        {options.map(opt => (
+          <div key={opt} className="symptom-item">
+            <input type="radio" name={name} id={`${name}-${opt}`} value={opt}
+              checked={selected === opt}
+              onChange={() => handleChange(opt)} />
+            <label htmlFor={`${name}-${opt}`}>{opt}</label>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 

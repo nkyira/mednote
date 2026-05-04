@@ -3,7 +3,7 @@ import { initialState, } from './state'
 import { useState } from 'react'
 import { buildCards } from './cards'
 import { Card, CheckboxItem, RadioItem, TextInput, NumberInput, SelectInput } from './components'
-import { PatientInfo, MotifConsultation , AntecedantChir, AntecedantMed, Traitement, Recurences, SymptomesB, AnamneseUro, AnamneseGyno, AnamneseCardio, AbPainDetail } from './sections'
+import { PatientInfo, MotifConsultation , AntecedantChir, AntecedantMed, Traitement, Recurences, SymptomesB, AnamneseUro, AnamneseGyno, AnamneseCardio, AbPainDetail, ConstipDetail, NauseaDetail, RectorrhDetail, HematDetail, HernDetail } from './sections'
 
 function App() {
 	// const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
@@ -45,8 +45,12 @@ function App() {
 			<AnamneseUro state={state} update={upd} />
 			<AnamneseGyno state={state} update={upd} />
 			<AnamneseCardio state={state} update={upd} />
-			<AnamneseCardio state={state} update={upd} />
 			<AbPainDetail state={state} update={upd} />
+			<ConstipDetail state={state} update={upd} />
+			<NauseaDetail state={state} update={upd} />
+			<RectorrhDetail state={state} update={upd} />
+			<HematDetail state={state} update={upd} />
+			<HernDetail state={state} update={upd} />
 
 
 			<button onClick={generateOutput}>Générer</button>
