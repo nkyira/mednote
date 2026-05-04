@@ -52,27 +52,57 @@ export function SelectInput({ id, label, options }) {
   )
 }
 
-export function CheckboxItem({ id, value, label, extraInput, extraCard }) {
+export function CheckboxRow({ label, options, onChange }) {
+  const [selected, setSelected] = useState([])
+
+  function handleChange(opt) {
+    const newSelected = selected.includes(opt)
+      ? selected.filter(o => o !== opt)
+      : [...selected, opt]
+    setSelected(newSelected)
+    if (onChange) onChange(newSelected)
+  }
+
+  return (
+<div className="checkbox-row">
+  <label>{label}</label>
+  <div className='options'>
+    {options.map(opt => (
+      <div key={opt} className="symptom-item">
+        <input type="checkbox" id={opt} checked={selected.includes(opt)}
+          onChange={() => handleChange(opt)} />
+        <label htmlFor={opt}>{opt}</label>
+      </div>
+    ))}
+  </div>
+</div>
+  )
+}
+
+export function CheckboxItem({ id, value, label, extraInput, onChange }) {
   const [checked, setChecked] = useState(false)
   const [inputVal, setInputVal] = useState('')
+
+  function handleChange(e) {
+    const isChecked = e.target.checked
+    setChecked(isChecked)
+    if (onChange) onChange(id, isChecked ? (inputVal ? `${value}: ${inputVal}` : value) : '')
+  }
 
   return (
     <div>
       <div className="symptom-item">
-        <input
-          type="checkbox"
-          id={id}
-          value={checked ? (inputVal ? `${value}: ${inputVal}` : value) : ''}
-          onChange={(e) => setChecked(e.target.checked)}
-        />
+        <input type="checkbox" id={id} value={value} onChange={handleChange} />
         <label htmlFor={id}>{label}</label>
       </div>
       {checked && extraInput && (
         <div className="field-input-wrapper">
-          {React.cloneElement(extraInput, { onChange: (e) => setInputVal(e.target.value) })}
+          {React.cloneElement(extraInput, { onChange: (e) => {
+            setInputVal(e.target.value)
+            if (onChange) onChange(id, `${value}: ${e.target.value}`)
+          }})}
         </div>
       )}
-      {checked && extraCard}
     </div>
   )
 }

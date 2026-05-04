@@ -1,32 +1,23 @@
 // import { useState } from 'react'
-import React, { useState } from 'react'
+import { initialState, } from './state'
+import { useState } from 'react'
 import { buildCards } from './cards'
 import { Card, CheckboxItem, RadioItem, TextInput, NumberInput, SelectInput } from './components'
-import { PatientInfo, MotifConsultation , AntecedantChir, AntecedantMed, Traitement, Recurences, SymptomesB, AnamneseUro, AnamneseGyno, AnamneseCardio } from './sections'
+import { PatientInfo, MotifConsultation , AntecedantChir, AntecedantMed, Traitement, Recurences, SymptomesB, AnamneseUro, AnamneseGyno, AnamneseCardio, AbPainDetail } from './sections'
 
 function App() {
-	  const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
-		const [output, setOutput] = useState('')
-		const [state, setState] = useState({
-			patient: { age: '', sex: '' },
-			motif: { abPain: '', constip: '', nausea: '', rectoRrh: '', hematCard: '', hern: '', pertedApp: ''},
-			antChir: {},
-			antMed: {},
-			traitement: {},
-			recurrence: '',
-			symptomesB: {},
-			anamUro: {},
-			anamGyn: {},
-			anamCardio: {},
-		})
-		console.log(state)
+	// const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
+	const [output, setOutput] = useState('')
+	const [state, setState] = useState(initialState)
+	function upd(section, key, value) {
+	setState(prev => ({
+		...prev,
+		[section]: { ...prev[section], [key]: value }
+	}))
+}
+	// const upd = (section, key, val) => update(setState, section, key, val)
+	console.log(state)
 
-		function update(section, key, value) {
-			setState(prev => ({
-				...prev,
-				[section]: { ...prev[section], [key]: value }
-			}))
-		}
 
 		function generateOutput() {
 			const values = []
@@ -44,16 +35,18 @@ function App() {
   return (
     <div className="layout">
 
-			<PatientInfo update={update} />
-			<MotifConsultation state={state} update={update} />
-			<AntecedantChir state={state} update={update} />
-			<AntecedantMed state={state} update={update} />
-			<Traitement state={state} update={update} />
-			<Recurences state={state} update={update} />
-			<SymptomesB state={state} update={update} />
-			<AnamneseUro state={state} update={update} />
-			<AnamneseGyno state={state} update={update} />
-			<AnamneseCardio state={state} update={update} />
+			<PatientInfo update={upd} />
+			<MotifConsultation state={state} update={upd} />
+			<AntecedantChir state={state} update={upd} />
+			<AntecedantMed state={state} update={upd} />
+			<Traitement state={state} update={upd} />
+			<Recurences state={state} update={upd} />
+			<SymptomesB state={state} update={upd} />
+			<AnamneseUro state={state} update={upd} />
+			<AnamneseGyno state={state} update={upd} />
+			<AnamneseCardio state={state} update={upd} />
+			<AnamneseCardio state={state} update={upd} />
+			<AbPainDetail state={state} update={upd} />
 
 
 			<button onClick={generateOutput}>Générer</button>

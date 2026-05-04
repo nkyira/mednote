@@ -1,4 +1,4 @@
-import { Card, CheckboxItem, NumberInput, RadioItem } from './components'
+import { Card, CheckboxItem, NumberInput, RadioItem, SelectInput, CheckboxRow } from './components'
 import { buildCards } from './cards'
 import React, { useState } from 'react'
 
@@ -16,16 +16,54 @@ export function PatientInfo({ update }) {
 }
 
 export function MotifConsultation({ state, update }) {
-  const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
   return (
     <Card title="Motif de consultation">
-      <CheckboxItem id="abPain" value="douleur abdominale" label="Douleur abdominale" extraCard={abPainCard} />
-      <CheckboxItem id="constip" value="constipation" label="Constipation" extraCard={constipCard} />
-      <CheckboxItem id="nausea" value="nausée/vomissement" label="Nausée / Vomissement" extraCard={nauseaCard} />
-      <CheckboxItem id="rectoRrh" value="rectorrhgies/méléna" label="Rectorrhgies / Méléna" extraCard={rectoRrhCard} />
-      <CheckboxItem id="hemat" value="hématémèse" label="Hématémèse" extraCard={hematCard} />
-      <CheckboxItem id="hern" value="hernie abdominale" label="Hernie abdominale" extraCard={hernCard} />
-      <CheckboxItem id="pertedApp" value="perte d'appéti" label="Perte d'appéti" />
+      <CheckboxItem id="abPain" value="douleur abdominale" label="Douleur abdominale"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="constip" value="constipation" label="Constipation"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="nausea" value="nausée/vomissement" label="Nausée / Vomissement"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="rectoRrh" value="rectorrhgies/méléna" label="Rectorrhgies / Méléna"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="hemat" value="hématémèse" label="Hématémèse"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="hern" value="hernie abdominale" label="Hernie abdominale"
+				onChange={(key, val) => update('motif', key, val)} />
+      <CheckboxItem id="pertedApp" value="perte d'appéti" label="Perte d'appéti"
+				onChange={(key, val) => update('motif', key, val)} />
+    </Card>
+  )
+}
+
+export function AbPainDetail({ state, update }) {
+  // const { abPainCard, constipCard, nauseaCard, rectoRrhCard, hematCard, hernCard } = buildCards()
+	if (!state.motif.abPain) return null
+  return (
+    <Card title="Douleur abdominale - détails">
+      <NumberInput id="abPainJ" label="Depuis" placeholder="Jours" min={0}
+        onChange={(val) => update('abPainDet', 'depuis', val)} />
+			<CheckboxRow 
+				label="Localisation:" 
+				options={["Fosse iliaque droite", "Fosse iliaque gauche", "Épigastre", "Suprapubien", "Hypochondre droit", "Hypochondre gauche"]}
+				onChange={(val) => update('abPainDet', 'localisation', val)}
+			/>
+      <NumberInput id="abPainI" label="Intensité" placeholder="/10" min={0} max={10} />
+		<CheckboxRow 
+			label="Qualité:"
+			options={["Coup de couteau", "Diffus", "Crampiforme", "Colique"]}
+			onChange={(val) => update('abPainDet', 'qualite', val)}
+		/>
+		<CheckboxRow 
+			label="Evolution:"
+			options={["En augmentation", "Constante", "En diminution"]}
+			onChange={(val) => update('abPainDet', 'evolution', val)}
+		/>
+		<CheckboxRow 
+			label="Facteur soulageant:"
+			options={["Pire avant les repas", "Pire après les repas", "Avant selles", "Après selles"]}
+			onChange={(val) => update('abPainDet', 'facteurSoulageant', val)}
+		/>
     </Card>
   )
 }

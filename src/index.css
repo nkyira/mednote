@@ -75,6 +75,7 @@
       align-items: center;
       gap: 0.6rem;
       padding: 0.4rem 0;
+			/* align-items: flex-start; */
     }
 
     .info-item label {
@@ -208,3 +209,22 @@
       font-weight: 300;
       transition: color 0.15s;
     }
+
+		.checkbox-row {
+			padding: 0.4rem 0;
+			border-bottom: none;
+		}
+
+		.checkbox-row > label {
+			font-size: 0.88rem;
+			font-weight: 300;
+			color: var(--text);
+			margin-bottom: 0.2rem;
+		}
+
+		.checkbox-row .options {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem 1rem;
+			row-gap: 0.0rem;
+		}
