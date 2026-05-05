@@ -104,7 +104,7 @@ export function NauseaDetail({ state, update }) {
 			)}
 			<RadioRow label="Notion de contage:" options={["Oui", "Non"]}
 				onChange={(val) => update('nauseaDet', 'contage', val)} />
-			<CheckboxRow  label="Consommation de toxique:" options={["Alcool", "Drogue"]}
+			<CheckboxRow label="Consommation de toxique:" options={["Alcool", "Drogue"]}
 				onChange={(val) => update('nauseaDet', 'consommation', val)} />
     </Card>
   )
@@ -114,15 +114,16 @@ export function RectorrhDetail({ state, update }) {
 	if (!state.motif.rectorrh) return null
   return (
     <Card title="Rectorrhagie - détails">
-      <NumberInput id="rectoRrhJ" label="Depuis" placeholder="Jours" min={0} />
-      <SelectInput id="rectoRrhQua" label="Qualité" options={[
-        "Sang frais", "Méléna", "Caillot"
-      ]} />
-      <SelectInput id="rectoRrhT" label="Timing" options={[
-        "Goutte sur la cuvette", "Mélangé aux selles"
-      ]} />
-      <SelectInput id="rectoRrhHemo" label="Hémodynamique" options={["Stable", "Instable"]} />
-      <SelectInput id="rectoRrhSouv" label="Sensation de devoir aller à selle tout le temps" options={["Oui", "Non"]} />
+      <NumberInput id="rectoRrhJ" label="Depuis" placeholder="Jours" min={0}
+        onChange={(val) => update('rectorrhDet', 'depuis', val)} />
+			<CheckboxRow  label="Qualité:" options={["Sang frais", "Méléna", "Caillot"]}
+				onChange={(val) => update('rectorrhDet', 'qualite', val)} />
+			<CheckboxRow label="Timing:" options={["Gouttes sur la cuvette", "Mélangé aux selles"]}
+				onChange={(val) => update('rectorrhDet', 'timing', val)} />
+			<RadioRow label="Hémodynamique:" options={["Stable", "Instable"]}
+				onChange={(val) => update('rectorrhDet', 'hemodynamique', val)} />
+			<RadioRow label="Sensation de devoir aller à selle tout le temps?" options={["Oui", "Non"]}
+				onChange={(val) => update('rectorrhDet', 'souvent', val)} />
     </Card>
   )
 }
@@ -131,16 +132,22 @@ export function HematDetail({ state, update }) {
 	if (!state.motif.hemat) return null
   return (
     <Card title="Hématèse - détails">
-      <NumberInput id="hematJ" label="Depuis" placeholder="Jours" min={0} />
-      <SelectInput id="hematAbs" label="Absence de" options={["Hémoptysie", "Épistaxis"]} />
-      <SelectInput id="hematQua" label="Qualité" options={["Sang frais", "Marque de café"]} />
-      <SelectInput id="hematQuant" label="Quantité" options={["Abondant", "Faible quantité"]} />
-      <SelectInput id="hematEp" label="Episode" options={["Unique", "Multiple"]} />
-      <SelectInput id="hematVom" label="Effort de vomissement avant" options={["Oui", "Non"]} />
-      <SelectInput id="hematSign" label="Signes associés" options={[
-        "Brulure rétrosternale", "Méléna", "Réctorrhagie", "Dysphagie"
-      ]} />
-      <SelectInput id="hematDyn" label="Hémodynamiquement" options={["Stable", "Instable"]} />
+      <NumberInput id="hematJ" label="Depuis" placeholder="Jours" min={0}
+        onChange={(val) => update('hematDet', 'depuis', val)} />
+			<CheckboxRow label="Absence de:" options={["Hémoptysie", "Épistaxis"]}
+				onChange={(val) => update('hematDet', 'absence', val)} />
+			<CheckboxRow label="Qualité:" options={["Sang frais", "Marque de café"]}
+				onChange={(val) => update('hematDet', 'qualite', val)} />
+			<RadioRow label="Quantité:" options={["Abondant", "Faible quantité"]}
+				onChange={(val) => update('hematDet', 'quantite', val)} />
+			<RadioRow label="Épisode:" options={["Unique", "Multiple"]}
+				onChange={(val) => update('hematDet', 'episode', val)} />
+			<RadioRow label="Effort de vomissement avant:" options={["Oui", "Non"]}
+				onChange={(val) => update('hematDet', 'vomissement', val)} />
+			<CheckboxRow label="Signes associés:" options={["Brulure rétrosternale", "Méléna", "Réctorrhagie", "Dysphagie"]}
+				onChange={(val) => update('hematDet', 'signes', val)} />
+			<RadioRow label="Hémodynamiquement" options={["Stable", "Instable"]}
+				onChange={(val) => update('hematDet', 'hemodynamique', val)} />
     </Card>
   )
 }
@@ -149,20 +156,18 @@ export function HernDetail({ state, update }) {
 	if (!state.motif.hern) return null
   return (
     <Card title="Hernie abdominale - détails">
-      <NumberInput id="hernJ" label="Depuis" placeholder="Jours" min={0} />
-      <SelectInput id="hernLoc" label="Localisation" options={[
-        "Inguinale", "Ombilicale", "Cicatricielle"
-      ]} />
-      <SelectInput id="hernApp" label="Mode d'apparition" options={["Progressif", "Brutal"]} />
-      <SelectInput id="hernEvo" label="Evolution" options={[
-        "Augmente avec le temps", "Constant"
-      ]} />
-      <SelectInput id="hernVar" label="Variabilité" options={[
-        "Augmente à l'effort", "Toux", "Station debout", "Disparait à repos", "Couché"
-      ]} />
-      <SelectInput id="hernAss" label="Symptômes associés" options={[
-        "Irréductible", "Douleur intense", "Rougeur", "Vomissement", "Constipation"
-      ]} />
+      <NumberInput id="hernJ" label="Depuis" placeholder="Jours" min={0}
+        onChange={(val) => update('hernDet', 'depuis', val)} />
+			<CheckboxRow label="Localisation:" options={["Inguinale", "Ombilicale", "Cicatricielle"]}
+				onChange={(val) => update('hernDet', 'localisation', val)} />
+			<RadioRow label="Mode d'apparation:" options={["Progressif", "Brutal"]}
+				onChange={(val) => update('hernDet', 'mode', val)} />
+			<RadioRow label="Évolution:" options={["Augmente avec le temps", "Constant"]}
+				onChange={(val) => update('hernDet', 'evolution', val)} />
+			<CheckboxRow label="Variabilité:" options={["Augmente à l'effort", "Toux", "Station debout", "Disparait à repos", "Couché"]}
+				onChange={(val) => update('hernDet', 'variabilite', val)} />
+			<CheckboxRow label="Symptômes associés:" options={["Irréductible", "Douleur intense", "Rougeur", "Vomissement", "Constipation"]}
+				onChange={(val) => update('hernDet', 'symptome', val)} />
     </Card>
   )
 }
@@ -171,15 +176,21 @@ export function HernDetail({ state, update }) {
 export function AntecedantChir({ state, update }) {
   return (
 		<Card title="Antécédants chirurgicaux">
-			<CheckboxItem id="appendix" value="appendicectomie" label="Appendicectomie" />
-			<CheckboxItem id="cholex" value="cholecystectomie" label="Cholecystectomie" />
-			<CheckboxItem id="cureHern" value="cure d'hernie" label="Cure d'hernie" />
+			<CheckboxItem id="appendix" value="appendicectomie" label="Appendicectomie"
+				onChange={(key, val) => update('antChir', key, val)} />
+			<CheckboxItem id="cholex" value="cholecystectomie" label="Cholecystectomie"
+				onChange={(key, val) => update('antChir', key, val)} />
+			<CheckboxItem id="cureHern" value="cure d'hernie" label="Cure d'hernie"
+				onChange={(key, val) => update('antChir', key, val)} />
 			<CheckboxItem id="chirGyn" value="chirurgie gynécologique" label="Chirurgie gynécologique"
-				extraInput={<input type="text" placeholder="Préciser..." />} />
+				extraInput={<input type="text" placeholder="Préciser..." />}
+				onChange={(key, val) => update('antChir', key, val)} />
 			<CheckboxItem id="chirUro" value="chirurgie urologique" label="Chirurgie urologique"
-				extraInput={<input type="text" placeholder="Préciser..." />} />
+				extraInput={<input type="text" placeholder="Préciser..." />}
+				onChange={(key, val) => update('antChir', key, val)} />
 			<CheckboxItem id="chirOrtho" value="chirurgie orthopédique" label="Chirurgie Orthopédique"
-				extraInput={<input type="text" placeholder="Préciser..." />} />
+				extraInput={<input type="text" placeholder="Préciser..." />}
+				onChange={(key, val) => update('antChir', key, val)} />
 		</Card>
   )
 }
@@ -187,22 +198,35 @@ export function AntecedantChir({ state, update }) {
 export function AntecedantMed({ state, update }) {
   return (
 		<Card title="Antécédants médicaux">
-			<CheckboxItem id="lithBil" value="lithiase biliaire" label="Lithiase biliaire" />
-			<CheckboxItem id="ulcGas" value="ulcère gastrique/duodénal" label="Ulcère gastrique/duodénal" />
+			<CheckboxItem id="lithBil" value="lithiase biliaire" label="Lithiase biliaire"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="ulcGas" value="ulcère gastrique/duodénal" label="Ulcère gastrique/duodénal"
+				onChange={(key, val) => update('antMed', key, val)} />
 			<CheckboxItem id="cancer" value="cancer" label="Cancer"
-				extraInput={<input type="text" placeholder="Préciser..." />} />
-			<CheckboxItem id="mici" value="MICI" label="MICI" />
-			<CheckboxItem id="diabet1" value="diabète type 1" label="Diabète type 1" />
-			<CheckboxItem id="diabet2" value="diabète type 2" label="Diabète type 2" />
-			<CheckboxItem id="hta" value="HTA" label="HTA" />
-			<CheckboxItem id="arythm" value="trouble du rythme cardiaque" label="Trouble du rythme" />
-			<CheckboxItem id="insCardio" value="insuffisance cardiaque" label="Insuffisance cardiaque" />
-			<CheckboxItem id="cirrhose" value="cirrhose" label="Cirrhose" />
-			<CheckboxItem id="insRen" value="insuffisance rénale" label="Insuffisance rénale" />
+				extraInput={<input type="text" placeholder="Préciser..." />}
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="mici" value="MICI" label="MICI"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="diabet1" value="diabète type 1" label="Diabète type 1"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="diabet2" value="diabète type 2" label="Diabète type 2"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="hta" value="HTA" label="HTA"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="arythm" value="trouble du rythme cardiaque" label="Trouble du rythme"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="insCardio" value="insuffisance cardiaque" label="Insuffisance cardiaque"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="cirrhose" value="cirrhose" label="Cirrhose"
+				onChange={(key, val) => update('antMed', key, val)} />
+			<CheckboxItem id="insRen" value="insuffisance rénale" label="Insuffisance rénale"
+				onChange={(key, val) => update('antMed', key, val)} />
 			<CheckboxItem id="tabac" value="tabagisme" label="Tabagisme"
-				extraInput={<input type="number" placeholder="Nb de cigarettes/jour" min="0" />} />
+				extraInput={<input type="number" placeholder="Nb de cigarettes/jour" min="0" />}
+				onChange={(key, val) => update('antMed', key, val)} />
 			<CheckboxItem id="coh" value="consommation d'alcool" label="Consommation d'alcool"
-				extraInput={<input type="number" placeholder="Nb de verres/jour" min="0" />} />
+				extraInput={<input type="number" placeholder="Nb de verres/jour" min="0" />}
+				onChange={(key, val) => update('antMed', key, val)} />
 		</Card>
   )
 }
@@ -210,21 +234,35 @@ export function AntecedantMed({ state, update }) {
 export function Traitement({ state, update }) {
   return (
 		<Card title="Traitement">
-			<CheckboxItem id="doac" value="DOAC" label="DOAC" />
-			<CheckboxItem id="avk" value="AVK" label="AVK" />
-			<CheckboxItem id="antiAgr" value="antiagrégant" label="Antiagrégant" />
-			<CheckboxItem id="immSupr" value="immunosuppresseur" label="Immunosuppresseur" />
-			<CheckboxItem id="betaB" value="bétabloquant" label="Bétabloquant" />
-			<CheckboxItem id="antiHyp" value="antihypertenseur" label="Antihypertenseur" />
-			<CheckboxItem id="diur" value="diurétique" label="Diurétique" />
-			<CheckboxItem id="antiArry" value="antiarrythmique" label="Antiarrythmique" />
-			<CheckboxItem id="insul" value="insuline" label="Insuline" />
-			<CheckboxItem id="metform" value="metformine" label="Metformine" />
-			<CheckboxItem id="antiEpi" value="antiépileptique" label="Antiépileptique" />
+			<CheckboxItem id="doac" value="DOAC" label="DOAC"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="avk" value="AVK" label="AVK"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="antiAgr" value="antiagrégant" label="Antiagrégant"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="immSupr" value="immunosuppresseur" label="Immunosuppresseur"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="betaB" value="bétabloquant" label="Bétabloquant"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="antiHyp" value="antihypertenseur" label="Antihypertenseur"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="diur" value="diurétique" label="Diurétique"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="antiArry" value="antiarrythmique" label="Antiarrythmique"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="insul" value="insuline" label="Insuline"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="metform" value="metformine" label="Metformine"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="antiEpi" value="antiépileptique" label="Antiépileptique"
+				onChange={(key, val) => update('traitement', key, val)} />
 			<CheckboxItem id="aller" value="allergie" label="Allergie"
-				extraInput={<input type="text" placeholder="Préciser..." />}/>
-			<CheckboxItem id="opio" value="opiodes" label="Opiodes" />
-			<CheckboxItem id="ains" value="AINS" label="AINS" />
+				extraInput={<input type="text" placeholder="Préciser..." />}
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="opio" value="opiodes" label="Opiodes"
+				onChange={(key, val) => update('traitement', key, val)} />
+			<CheckboxItem id="ains" value="AINS" label="AINS"
+				onChange={(key, val) => update('traitement', key, val)} />
 		</Card>
   )
 }
@@ -232,10 +270,14 @@ export function Traitement({ state, update }) {
 export function Recurences({ state, update }) {
   return (
 		<Card title="Récurences">
-			<RadioItem name="rec" id="premier" value="premier épisode" label="Premier épisode" />
-			<RadioItem name="rec" id="deuxieme" value="deuxieme épisode" label="Deuxieme épisode" />
-			<RadioItem name="rec" id="mult" value="épisode multiples" label="Épisodes multiples" />
-			<RadioItem name="rec" id="recidive" value="récidive" label="Récidive" />
+			<RadioItem name="rec" id="premier" value="premier épisode" label="Premier épisode"
+        onChange={(val) => update('recurrence', 'recurrence', val)} />
+			<RadioItem name="rec" id="deuxieme" value="deuxieme épisode" label="Deuxieme épisode"
+        onChange={(val) => update('recurrence', 'recurrence', val)} />
+			<RadioItem name="rec" id="mult" value="épisode multiples" label="Épisodes multiples"
+        onChange={(val) => update('recurrence', 'recurrence', val)} />
+			<RadioItem name="rec" id="recidive" value="récidive" label="Récidive"
+        onChange={(val) => update('recurrence', 'recurrence', val)} />
 		</Card>
   )
 }
@@ -243,32 +285,46 @@ export function Recurences({ state, update }) {
 export function SymptomesB({ state, update }) {
   return (
 		<Card title="Symptômes B">
-			<CheckboxItem id="fievre" value="fièvre/frisson" label="Fièvre/frisson" />
-			<CheckboxItem id="fatig" value="fatigue" label="Fatigue" />
-			<CheckboxItem id="pertePds" value="perte de poids" label="Perde de poids" />
-			<CheckboxItem id="sudNoct" value="sudation nocturne" label="Sudation nocturne" />
-			<CheckboxItem id="malaise" value="malaise" label="Malaise" />
+			<CheckboxItem id="fievre" value="fièvre/frisson" label="Fièvre/frisson"
+        onChange={(key, val) => update('symptomesB', key, val)} />
+			<CheckboxItem id="fatig" value="fatigue" label="Fatigue"
+        onChange={(key, val) => update('symptomesB', key, val)} />
+			<CheckboxItem id="pertePds" value="perte de poids" label="Perde de poids"
+        onChange={(key, val) => update('symptomesB', key, val)} />
+			<CheckboxItem id="sudNoct" value="sudation nocturne" label="Sudation nocturne"
+        onChange={(key, val) => update('symptomesB', key, val)} />
+			<CheckboxItem id="malaise" value="malaise" label="Malaise"
+        onChange={(key, val) => update('symptomesB', key, val)} />
 		</Card>
   )
 }
 
 export function AnamneseUro({ state, update }) {
+	if (state.patient.sex !== "homme") return null
   return (
 		<Card title="Anamnèse urologique">
-			<CheckboxItem id="dysur" value="dysurie" label="Dysurie" />
-			<CheckboxItem id="pollak" value="pollakiurie" label="Pollakiurie" />
-			<CheckboxItem id="hematu" value="hématurie" label="Hématurie" />
+			<CheckboxItem id="dysur" value="dysurie" label="Dysurie"
+        onChange={(key, val) => update('anamUro', key, val)} />
+			<CheckboxItem id="pollak" value="pollakiurie" label="Pollakiurie"
+        onChange={(key, val) => update('anamUro', key, val)} />
+			<CheckboxItem id="hematu" value="hématurie" label="Hématurie"
+        onChange={(key, val) => update('anamUro', key, val)} />
 		</Card>
   )
 }
 
 export function AnamneseGyno({ state, update }) {
+	if (state.patient.sex !== "femme") return null
   return (
 		<Card title="Anamnèse gynocologique">
-			<NumberInput id="detRegl" label="Dernière règle depuis" placeholder="Jours" min={0} />
-			<CheckboxItem id="retRegl" value="retard de règle" label="Retard de Règle" />
-			<CheckboxItem id="metroRrh" value="métrorrhagies" label="Métrorrhagies" />
-			<CheckboxItem id="doulPelv" value="douleur pelvienne" label="Douleur pelvienne" />
+			<NumberInput id="detRegl" label="Dernière règle depuis" placeholder="Jours" min={0}
+        onChange={(key, val) => update('anamGyno', key, val)} />
+			<CheckboxItem id="retRegl" value="retard de règle" label="Retard de Règle"
+        onChange={(key, val) => update('anamGyno', key, val)} />
+			<CheckboxItem id="metroRrh" value="métrorrhagies" label="Métrorrhagies"
+        onChange={(key, val) => update('anamGyno', key, val)} />
+			<CheckboxItem id="doulPelv" value="douleur pelvienne" label="Douleur pelvienne"
+        onChange={(key, val) => update('anamGyno', key, val)} />
 		</Card>
   )
 }
@@ -276,9 +332,12 @@ export function AnamneseGyno({ state, update }) {
 export function AnamneseCardio({ state, update }) {
   return (
 		<Card title="Anamnèse cardiopulmonaire">
-			<CheckboxItem id="doulThor" value="douleur thoracique" label="Douleur Thoracique" />
-			<CheckboxItem id="dysp" value="dispnée" label="Dyspnée" />
-			<CheckboxItem id="palp" value="palpitations" label="Palpitations" />
+			<CheckboxItem id="doulThor" value="douleur thoracique" label="Douleur Thoracique"
+        onChange={(key, val) => update('anamCardio', key, val)} />
+			<CheckboxItem id="dysp" value="dispnée" label="Dyspnée"
+        onChange={(key, val) => update('anamCardio', key, val)} />
+			<CheckboxItem id="palp" value="palpitations" label="Palpitations"
+        onChange={(key, val) => update('anamCardio', key, val)} />
 		</Card>
   )
 }
